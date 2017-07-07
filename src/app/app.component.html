@@ -1,10 +1,13 @@
-<app-header></app-header>
+<!-- Recibe el evento emitido y le asigna un metodo onNavigate y le pasa el evento que trae del evento emitido desde header.component.ts, on Navigate() se encuentra en app.component.ts -->
+<app-header (featureSelected)="onNavigate($event)"></app-header>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+      <!-- pregunta si el valor de app.component.ts es igual a recipe, si es asi lo muestra, sino no. -->
+      <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
+      <!-- pregunta si el valor de app.component.ts no es igual a recipe -->
+      <app-shopping-list *ngIf="loadedFeature !== 'recipe'"></app-shopping-list>
     </div>
   </div>
 </div>
