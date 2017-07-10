@@ -17,4 +17,14 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
   }
 
+  // recibe ingrediente del tipo Ingredient
+  onIngredientAdded(ingredient: Ingredient) {
+    if (ingredient.name.length !== 0 ) {
+      this.ingredients.push(ingredient);
+    } else {
+      alert('NOPE!');
+    }
+    
+  }
+
 }
