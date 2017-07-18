@@ -21,7 +21,7 @@ export class ShoppingEditComponent implements OnInit {
 
   onAddItem() {
     // usa constante porque no va a cambiar esta manera de trabajar el codigo.
-    // trae el valor de name y amount y lo agrega al modelo Ingredient por su parametro.
+    // trae el valor de name y amount desde @ViewChild y lo agrega al modelo Ingredient por su parametro.
     const ingName = this.nameInputRef.nativeElement.value;
     const ingAmount = this.amountInputRef.nativeElement.value;
     const newIngredient = new Ingredient(ingName, ingAmount);

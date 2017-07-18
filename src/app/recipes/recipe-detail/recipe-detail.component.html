@@ -12,7 +12,8 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <div class="btn-group">
+    <!-- le pone appDropdown y es la directiva que creo en shared/dropdown.directive.ts donde le cambia el valor de false a true y viceversa cada vez que hace click, si es true HostBinding pone la clase open, si es false la quita -->
+    <div class="btn-group" appDropdown>
       <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipes <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <li><a href="#">To Shopping List</a></li>
