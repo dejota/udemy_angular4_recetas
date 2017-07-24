@@ -12,9 +12,22 @@ import { RecipeService } from './recipe.service';
 export class RecipesComponent implements OnInit {
   selectedRecipe: Recipe;
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) {
+
+  }
 
   ngOnInit() {
+    // apenas inicia crea el listener y 
+    this.recipeService.recipeSelected
+      .subscribe(
+        // recibe la data de RecipeService donde se emite la info de cuando hace clic.
+        // (recipe: Recipe) argumento
+        // => function
+        (recipe: Recipe) => {
+          // le pasa selectedRecipe el valor que viene de recipe
+          this.selectedRecipe = recipe;
+        }
+      );
   }
 
 }

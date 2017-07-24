@@ -7,6 +7,6 @@
 <div class="row">
   <div class="col-xs-12">
     <!-- al haber tantos nombres con recipe, al ngFor el primer parametro se lo cambia por recipeEl, [recipe] es la referencia del valor de modelo recipe en recipe-item.component.ts -->
-    <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl" (recipeSelected)="onRecipeSelected(recipeEl)"></app-recipe-item>
+    <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl"></app-recipe-item>
   </div>
 </div>
