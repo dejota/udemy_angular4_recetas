@@ -1,3 +1,4 @@
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +31,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  // provee el servicio, porque tiene que pasar data desde shopping-list a recipes.
+  providers: [ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

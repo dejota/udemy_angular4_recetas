@@ -1,6 +1,7 @@
 import { Directive, HostListener, HostBinding } from '@angular/core';
 
 @Directive({
+  /* Selecciona la directiva que esta en header.component.html <li class="dropdown" appDropdown> y en recipe-detail.component.html <div class="btn-group" appDropdown> */
   selector: '[appDropdown]'
 })
 export class DropdownDirective {
