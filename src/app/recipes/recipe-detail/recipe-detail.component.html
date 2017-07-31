@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
     <!-- Bindea el src y le pasa el link de la imagen -->
-    <img [src]="recipe.imagePath" alt="" class="img-responsive" style="max-width: 300px; ">
+    <img [src]="recipe.imagePath" alt="" class="img-responsive">
   </div>
 </div>
 <div class="row">
@@ -30,6 +30,12 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Ingredients
+    <ul class="list-group">
+      <!-- trae todos los ingredientes del array de recipe.service.ts y usa el modelo de recipe.model.ts, que llama desde recipe-detail.component.ts -->
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+        <!-- usa string interpolation -->
+        {{ ingredient.name }} - {{ ingredient.amount }}
+      </li>
+    </ul>
   </div>
 </div>
