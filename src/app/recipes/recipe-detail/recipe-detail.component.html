@@ -16,7 +16,8 @@
     <div class="btn-group" appDropdown>
       <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipes <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        <li><a href="#">To Shopping List</a></li>
+        <!-- cuando clickea ejecuta el metodo onAddToShoppingList() que esta creado en recipe-detail.component.ts -->
+        <li><a (click)="onAddToShoppingList()" style="cursor: pointer; ">To Shopping List</a></li>
         <li><a href="#">Edit Recipe</a></li>
         <li><a href="#">Delete Recipe</a></li>
       </ul>

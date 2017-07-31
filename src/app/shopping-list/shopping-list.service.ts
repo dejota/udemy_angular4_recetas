@@ -32,9 +32,21 @@ export class ShoppingListService {
       this.ingredientsChanged.emit(this.ingredients.slice());
     } else {
       alert('NOPE!');
-    }
+    } 
+  }
 
-    
+  // este metodo recibe los ingredientes de recipe.service.ts y este los recibe desde recipe-detail.component.ts
+  addIngredients(ingredients: Ingredient[]) {
+    // itera todos los ingredientes de la receta seleccionada.
+    //for (let ingredient of ingredients) {
+      // agrega el ingrediente al metodo de arriba.
+      //this.addIngredient(ingredient);
+    //}
+    // pushea a ingredients con el operador spread de es6, que cambia un elemento de array en un elemento de lista.
+    // ...ingredients <-- spread operator
+    this.ingredients.push(...ingredients);
+    // agrega la data dentro del array del slice
+    this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
   constructor() { }

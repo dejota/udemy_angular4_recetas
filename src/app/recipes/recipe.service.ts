@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {
@@ -39,6 +40,12 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  constructor() { }
+  // recibe los ingredientes
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.slService.addIngredients(ingredients);
+  }
+
+  // apenas inicia le pasa el slService del servicio de ShoppingListService
+  constructor(private slService: ShoppingListService) { }
 
 }
