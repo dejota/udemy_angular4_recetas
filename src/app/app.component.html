@@ -4,10 +4,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <!-- pregunta si el valor de app.component.ts es igual a recipe, si es asi lo muestra, sino no. -->
+      <!-- pregunta si el valor de app.component.ts es igual a recipe, si es asi lo muestra, sino no.
       <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
-      <!-- pregunta si el valor de app.component.ts no es igual a recipe -->
-      <app-shopping-list *ngIf="loadedFeature !== 'recipe'"></app-shopping-list>
+      pregunta si el valor de app.component.ts no es igual a recipe 
+      <app-shopping-list *ngIf="loadedFeature !== 'recipe'"></app-shopping-list>-->
+
+      <!-- en vez de usar el ngIF usa router-outlet y la ruta que entre se muestra ese componente -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
