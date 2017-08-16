@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 
 // crea una constante que es del tipo Routes
 // importa Routes para poder crear las rutas
@@ -11,7 +13,12 @@ const appRoutes: Routes = [
   /* cuando entra a home lo redirige a /recipes, para solucionar que tire error,
   porque angular no entiende que es solo para home, hay que agregar pathMatch */
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  { path: 'recipes', component: RecipesComponent },
+  // usa children en tercer parametro y crea un objeto de js.
+  { path: 'recipes', component: RecipesComponent, children: [
+    // usa esta ruta con RecipeStartComponent solo para pasar un mensaje de texto, de seleccionar receta
+    { path: '', component: RecipeStartComponent },
+    { path: ':id', component: RecipeDetailComponent }
+  ] },
   { path: 'shopping-list', component: ShoppingListComponent }
 ];
 
