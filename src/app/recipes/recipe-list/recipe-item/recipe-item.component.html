@@ -1,5 +1,6 @@
-<!-- bindea routerLink y desde recipe-item.component.ts le pasa el index de cada receta que hay en el array. -->
-<a class="list-group-item clearfix" [routerLink]="[index]" style="cursor: pointer; ">
+<!-- bindea routerLink y desde recipe-item.component.ts le pasa el index de cada receta que hay en el array.
+Con routerLinkActive="active" sabe cual link clickeo y le pone la clase active. -->
+<a class="list-group-item clearfix" [routerLink]="[index]" routerLinkActive="active" style="cursor: pointer; ">
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
     <p class="list-group-item-text">{{ recipe.description }}</p>
