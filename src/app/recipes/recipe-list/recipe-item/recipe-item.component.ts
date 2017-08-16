@@ -10,7 +10,8 @@ export class RecipeItemComponent implements OnInit {
   // toma el valor del modelo creado en ../../recipe.model
   // el decorador @Input() permite que de afuera del componente pueda bindear (acceder a este dato).
   @Input() recipe: Recipe;
-
+  // con Input puede pasar index afuera de este componente
+  @Input() index: number;
 
   ngOnInit() {
   }

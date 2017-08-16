@@ -6,7 +6,8 @@
 <hr>
 <div class="row">
   <div class="col-xs-12">
-    <!-- al haber tantos nombres con recipe, al ngFor el primer parametro se lo cambia por recipeEl, [recipe] es la referencia del valor de modelo recipe en recipe-item.component.ts -->
-    <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl"></app-recipe-item>
+    <!-- al haber tantos nombres con recipe, al ngFor el primer parametro se lo cambia por recipeEl, [recipe] es la referencia del valor de modelo recipe en recipe-item.component.ts .
+    Crea var de i, para obtener el numero de index en el array de las recetas, y lo pasa al bind [index] y este valor lo pasa a recipe-item.component.ts gracias a que creo la variable index y le puso @Input() -->
+    <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" [recipe]="recipeEl" [index]="i"></app-recipe-item>
   </div>
 </div>
