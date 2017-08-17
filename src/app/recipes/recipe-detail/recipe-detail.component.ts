@@ -28,8 +28,11 @@ export class RecipeDetailComponent implements OnInit {
           // le asigna el valor que trae por url y le antepone el simbolo de + porque viene string y asi lo cambia a number
           // con esta informacion, recipe.service.ts puede saber que receta mostrar.
           this.id = +params['id'];
-
           this.recipe = this.recipeService.getRecipe(this.id);
+
+          /* if(this.recipe === undefined) {
+            console.log('no existe receta');
+          } */
         }
       );
   }
