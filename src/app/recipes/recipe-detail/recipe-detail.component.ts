@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -17,7 +17,9 @@ export class RecipeDetailComponent implements OnInit {
   // inyecta el servicio de recipe
   constructor(private recipeService: RecipeService,
     // importa ActivatedRoute para saber el id que tiene la receta.
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              // necesita Router para poder usar las rutas.
+              private router: Router) { }
 
   ngOnInit() {
     // esta a la escucha del params observable y lo subscribe, con eso puede actuar a cualquier cambio que tenga.
@@ -42,6 +44,12 @@ export class RecipeDetailComponent implements OnInit {
     /* ejecuta addIngredientsToShoppingList del servicio recipeService y le pasa por parametro los ingredientes de la receta,
     para poder mostrar esa data en shopping-list. */
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
+
+  onEditRecipe() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
+    /* con esta ruta no necesita usar la variable id, sino que sube un nivel, le pide this.id y despues le pone edit.
+    this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route}); */
   }
 
 }
