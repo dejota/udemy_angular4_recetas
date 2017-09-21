@@ -10,6 +10,8 @@ import { Subject } from 'rxjs/Subject';
 export class ShoppingListService {
   // emite Ingredient array
   ingredientsChanged = new Subject<Ingredient[]>();
+  // aloja el index de los items para poder editarlos con el metodo onEditItem() que esta en shopping-list.component.ts
+  startedEditing = new Subject<number>()
 
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),

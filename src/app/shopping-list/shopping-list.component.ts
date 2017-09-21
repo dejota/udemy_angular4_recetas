@@ -35,4 +35,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  // el parametro que la pasa en el html, aca lo recibe y le pone tipo number
+  onEditItem(index: number) {
+    // startedEditing fue creado como Subject y del tipo number y le emite con next el index
+    // con esto puede ser escuchado en otro componente, en este caso shopping-edit.component.ts
+    this.slService.startedEditing.next(index)
+  }
+
 }

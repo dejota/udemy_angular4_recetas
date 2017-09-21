@@ -1,18 +1,22 @@
 <div class="row">
     <div class="col-xs-12">
-      <form>
+      <!-- bindea la directiva ngSubmit con el metodo onAddItem(), esta a la escucha del evento submit, ngSubmit puede usarlo gracias a que lo importa en app.module.ts con #f hace referencia al elemento form y le asigna ngForm para acceder a las propiedades del objeto que crea js y la referencia osea f se lo pasa como parametro a onAddItem -->
+      <form (ngSubmit)="onAddItem(f)" #f="ngForm">
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" class="form-control" #nameInput>
+            <!-- necesita ngModel para que el objeto ngForm tome todas las propiedades de name, como value y validaciones como required -->
+            <input type="text" id="name" class="form-control" name="name" ngModel required>
           </div>
           <div class="col-sm-2 form-group">
             <label for="amount">Amount</label>
-            <input type="number" id="amount" class="form-control" value="0" #amountInput>
+            <!-- con pattern puede validar con expresiones regulares -->
+            <input type="number" id="amount" class="form-control" value="0" name="amount" ngModel required pattern="^[1-9]+[0-9]*$">
           </div>
         </div>
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" (click)="onAddItem()">Add</button>
+          <!-- bindea disabled y si el formulario no es valido lo mantiene deshabilitado -->
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Add</button>
           <button class="btn btn-danger" type="button">Delete</button>
           <button class="btn btn-primary" type="button">Clear</button>
         </div>
