@@ -1,0 +1,4 @@
+/* solo selecciona los input y ng-touched es para que marque en rojo solo si fue tocado ese campo */
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

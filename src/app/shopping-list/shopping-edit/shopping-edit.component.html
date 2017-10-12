@@ -1,7 +1,9 @@
+<!-- FORMULARIO TEMPLATE DRIVEN -->
+
 <div class="row">
     <div class="col-xs-12">
       <!-- bindea la directiva ngSubmit con el metodo onAddItem(), esta a la escucha del evento submit, ngSubmit puede usarlo gracias a que lo importa en app.module.ts con #f hace referencia al elemento form y le asigna ngForm para acceder a las propiedades del objeto que crea js y la referencia osea f se lo pasa como parametro a onAddItem -->
-      <form (ngSubmit)="onAddItem(f)" #f="ngForm">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="row">
           <div class="col-sm-5 form-group">
             <label for="name">Name</label>
@@ -15,10 +17,13 @@
           </div>
         </div>
         <div class="col-xs-12">
-          <!-- bindea disabled y si el formulario no es valido lo mantiene deshabilitado -->
-          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Add</button>
-          <button class="btn btn-danger" type="button">Delete</button>
-          <button class="btn btn-primary" type="button">Clear</button>
+          <!-- bindea disabled y si el formulario no es valido lo mantiene deshabilitado.
+          Dentro de button pregunta si editMode es verdadero pone mensae Update, sino pone mensaje Add -->
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add' }}</button>
+          <!-- solo muestra delete si editMode esta en true -->
+          <button class="btn btn-danger" type="button" (click)="onDelete()" *ngIf="editMode">Delete</button>
+          <!-- le agrega un listener del click con el metodo onClear -->
+          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
         </div>
       </form>
     </div>

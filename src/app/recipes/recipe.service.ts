@@ -42,7 +42,7 @@ export class RecipeService {
     return this.recipes[index];
   }
 
-  // recibe los ingredientes
+  // recibe los ingredientes y se los pasa al slService de shopping-list.service.ts
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
   }

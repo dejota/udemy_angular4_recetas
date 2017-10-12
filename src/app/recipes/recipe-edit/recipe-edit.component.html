@@ -1,3 +1,80 @@
-<p>
-  recipe-edit works!
-</p>
+<!-- FORMULARIO REACTIVO, para usarlo hay que importarlo en app.module.ts, si hay un error, en el css esta lo que marca en rojo. -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- bindea formGroup asi le pasa data con recipeForm -->
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="col-xs-12">
+        <!-- bindea disabled y pregunta si la respuesta del formulario no es valido, si es valido lo muestra -->
+        <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <!-- formControlName="name" asocia este campo con la variable que le asigna el valor this.recipeForm en recipe-edit.component.ts  -->
+            <input type="text" id="name" formControlName="name" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" id="imagePath" formControlName="imagePath" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <img src="" class="img-responsive">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" id="description" formControlName="description" class="form-control" rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- le agrega la directiva formArrayName y le asigna el valor ingredients que viene de recipe-edit.component.ts -->
+        <div class="col-xs-12" formArrayName="ingredients">
+          <!-- itera todos los controles de los ingredientes y tambien guarda el index de cada ingrediente del array recipeIngredients
+          formGroupName i, trae la data de ese index. -->
+          <div class="row" *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index" [formGroupName]="i">
+            <div class="col-xs-8">
+              <input type="text" formControlName="name" class="form-control">
+            </div>
+            <div class="col-xs-2">
+              <input type="number" formControlName="amount" class="form-control">
+            </div>
+            <div class="col-xs-2">
+              <button class="btn btn-danger">X</button>
+            </div>
+            <br><br>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- si hay un boton para guardar o enviar, este que es para agregar nuevo ingrediente, tiene que ser del tipo button, asi no hace submit -->
+              <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+            </div>
+          </div>
+          <br><br>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
