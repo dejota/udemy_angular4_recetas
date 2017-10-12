@@ -23,6 +23,15 @@ export class RecipeListComponent implements OnInit {
   }
 
   ngOnInit() {
+    // si hay algun cambio, cuando crea una receta o actualiza, agrega esa nueva data para que se vea
+    this.recipeService.recipesChanged
+      .subscribe(
+        // si cambia osea es success y sabe que trae recipes
+        (recipes: Recipe[]) => {
+          // le asigna el nuevo valor
+          this.recipes = recipes;
+        }
+      );
     // lo que trae del constructor es el array y lo guarda en el array creado arriba.
     this.recipes = this.recipeService.getRecipes();
   }

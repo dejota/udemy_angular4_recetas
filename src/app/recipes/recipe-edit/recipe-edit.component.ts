@@ -2,6 +2,7 @@ import { RecipeService } from './../recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -37,9 +38,18 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
+    // pregunta si esta en editMode
+    if (this.editMode) {
+      // si esta editando, lo actualiza y le pasa el id y para aprovechar la ventaja de form reactve,
+      // le pasa this.recipeForm.value, que le pasa todos los valores del input este metodo es de recipe.service.ts
+      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+    } else {
+      this.recipeService.addRecipe(this.recipeForm.value)
+    }
+
     /* cuando hace clic en save, muestra en consola que valores trae, para verlos, click en formGroup
     click en values y se ven los valores de los campos */
-    console.log(this.recipeForm);
+    // console.log(this.recipeForm);
   }
 
   /* a la escucha del clic en Add Ingredient en el html */
