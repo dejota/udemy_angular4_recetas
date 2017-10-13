@@ -1,8 +1,7 @@
 import { RecipeService } from './../recipe.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -16,9 +15,12 @@ export class RecipeEditComponent implements OnInit {
   /* crea la propiedad recipeForm y le pasa el tipo FormGroup que es importado arriba */
   recipeForm: FormGroup;
 
-  constructor(private route: ActivatedRoute,
+  constructor(// con ActivatedRoute puede saber en que url se encuentra actualmente.
+              private route: ActivatedRoute,
               // inyecta en el constructor el servicio RecipeService
-              private recipeService: RecipeService) { }
+              private recipeService: RecipeService,
+              // necesite Router para redireccionar en el metodo onCancel()
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -50,6 +52,9 @@ export class RecipeEditComponent implements OnInit {
     /* cuando hace clic en save, muestra en consola que valores trae, para verlos, click en formGroup
     click en values y se ven los valores de los campos */
     // console.log(this.recipeForm);
+
+    // cuando hace clic en submit, llama al metodo cancelar, asi sale de esta pagina y va a recipe-detail.component.html
+    this.onCancel();
   }
 
   /* a la escucha del clic en Add Ingredient en el html */
@@ -69,6 +74,12 @@ export class RecipeEditComponent implements OnInit {
         ])
       })
     )
+  }
+
+  onCancel() {
+    /* cuando cancela, navega un nivel arriba, osea a recipe-detail.component.html
+    para que funcione, hay que indicarle a angular en que url se encuentra actualmente con relativeTo */
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   // inicializa el formulario

@@ -7,7 +7,7 @@
       <div class="col-xs-12">
         <!-- bindea disabled y pregunta si la respuesta del formulario no es valido, si es valido lo muestra -->
         <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
-        <button type="button" class="btn btn-danger">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
       </div>
 
       <div class="row">
@@ -24,14 +24,16 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label for="imagePath">Image URL</label>
-            <input type="text" id="imagePath" formControlName="imagePath" class="form-control">
+            <!-- le agrega una referencia local #imagePath asi puede seleccionarlo y acceder a su info -->
+            <input type="text" id="imagePath" formControlName="imagePath" class="form-control" #imagePath>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <img src="" class="img-responsive">
+          <!-- bindea el source con el valor de la referencia creada arriba -->
+          <img [src]="imagePath.value" class="img-responsive">
         </div>
       </div>
 

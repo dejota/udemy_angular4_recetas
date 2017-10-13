@@ -33,6 +33,7 @@ export class RecipeListComponent implements OnInit {
         }
       );
     // lo que trae del constructor es el array y lo guarda en el array creado arriba.
+    // this.recipes trae todas las recetas.
     this.recipes = this.recipeService.getRecipes();
   }
 

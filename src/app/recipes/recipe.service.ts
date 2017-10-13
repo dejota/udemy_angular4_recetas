@@ -69,4 +69,11 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
+  deleteRecipe(index: number) {
+    // con esto solo remueve del array el index que pasa
+    this.recipes.splice(index, 1);
+    // emite la actualizacion de la lista de recetas con recipesChanged
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
 }
