@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from './../recipe.service';
@@ -9,9 +10,11 @@ import { RecipeService } from './../recipe.service';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
   // inicia el array del modelo Recipe.
   recipes: Recipe[];
+  // crea una variable del tipo Subscription y lo importa arriba
+  subscription: Subscription;
 
   // en el parametro del constructor crea var recipeService y toma valor de todo lo que tiene la clase RecipeServie que trae del import
   constructor(private recipeService: RecipeService,
@@ -24,7 +27,8 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     // si hay algun cambio, cuando crea una receta o actualiza, agrega esa nueva data para que se vea
-    this.recipeService.recipesChanged
+    // guarda el subscribe en la var para poder desuscribirlo en onDestroy
+    this.subscription = this.recipeService.recipesChanged
       .subscribe(
         // si cambia osea es success y sabe que trae recipes
         (recipes: Recipe[]) => {
@@ -44,6 +48,9 @@ export class RecipeListComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-
+  ngOnDestroy() {
+    // desuscribe para que no quede en memoria
+    this.subscription.unsubscribe();
+  }
 
 }

@@ -76,6 +76,11 @@ export class RecipeEditComponent implements OnInit {
     )
   }
 
+  onDeleteIngedient(index: number) {
+    // al ser un FormArray lo encapsula para poder pasarle el metodo removeAt y ahi le pasa el index del ingrediente a borrar.
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
   onCancel() {
     /* cuando cancela, navega un nivel arriba, osea a recipe-detail.component.html
     para que funcione, hay que indicarle a angular en que url se encuentra actualmente con relativeTo */

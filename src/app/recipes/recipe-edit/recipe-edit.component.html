@@ -59,7 +59,9 @@
               <input type="number" formControlName="amount" class="form-control">
             </div>
             <div class="col-xs-2">
-              <button class="btn btn-danger">X</button>
+              <!-- si hay un boton para guardar o enviar, este que es para agregar nuevo ingrediente, tiene que ser del tipo button, asi no hace submit
+              le pasa el index del *ngFor a onDeleteIngedient(i) para que sepa que ingrediente borrar -->
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngedient(i)">X</button>
             </div>
             <br><br>
           </div>
