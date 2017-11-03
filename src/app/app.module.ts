@@ -17,6 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
+import { DataStorageService } from './shared/data-storage.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { RecipeService } from './recipes/recipe.service';
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ import { RecipeService } from './recipes/recipe.service';
   ],
   // provee el servicio, porque tiene que pasar data desde shopping-list a recipes.
   // cuando pasa a shopping-list y vuelve a recipes, se sigue viendo las recetas agregadas.
-  providers: [ShoppingListService, RecipeService],
+  // DataStorageService trae la data de RecipeService y puede guardar con el boton save en header.component.html y ts
+  providers: [ShoppingListService, RecipeService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

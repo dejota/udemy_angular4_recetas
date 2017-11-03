@@ -11,12 +11,13 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/signup">Register</a></li>
         <!-- le pone appDropdown y es la directiva que creo en shared/dropdown.directive.ts donde le cambia el valor de false a true y viceversa cada vez que hace click, si es true HostBinding pone la clase open, si es false la quita -->
         <li class="dropdown" appDropdown>
           <a class="dropdown-toggle" role="button" style="cursor: pointer; ">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a style="cursor: pointer; ">Save Data</a></li>
-            <li><a style="cursor: pointer; ">Fetch Data</a></li>
+            <li><a style="cursor: pointer; " (click)="onSaveData()">Save Data</a></li>
+            <li><a style="cursor: pointer; " (click)="onFetchData()">Fetch Data</a></li>
           </ul>
         </li>
       </ul>

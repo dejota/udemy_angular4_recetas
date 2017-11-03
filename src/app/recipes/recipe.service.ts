@@ -39,6 +39,14 @@ export class RecipeService {
   // apenas inicia le pasa el slService del servicio de ShoppingListService
   constructor(private slService: ShoppingListService) { }
 
+  /* espera que llegue un array de recipes */
+  setRecipes(recipes: Recipe[]) {
+    // reemplaza el array recipes de lo que trae de data-storage que a su vez trae desde firebase
+    this.recipes = recipes;
+    // le pasa a recipesChanged con next una copia de this.recipes
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   // crea este metodo para que devuelva el array recipes, y no puedan acceder desde afuera.
   getRecipes() {
     // usa el metodo slice para crear una copia de este array y no pisar el original.
