@@ -20,6 +20,7 @@ import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SigninComponent } from './auth/signin/signin.component';
   // provee el servicio, porque tiene que pasar data desde shopping-list a recipes.
   // cuando pasa a shopping-list y vuelve a recipes, se sigue viendo las recetas agregadas.
   // DataStorageService trae la data de RecipeService y puede guardar con el boton save en header.component.html y ts
-  providers: [ShoppingListService, RecipeService, DataStorageService],
+  // AuthService importa el sdk de firebase para poder loguearse al servicio y traer la data
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

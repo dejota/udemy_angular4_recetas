@@ -1,3 +1,19 @@
-<p>
-  signin works!
-</p>
+<!-- bindea la directiva ngSubmit con el metodo onSubmit(), esta a la escucha del evento submit, ngSubmit puede usarlo gracias a que lo importa en app.module.ts con #f hace referencia al elemento form y le asigna ngForm para acceder a las propiedades del objeto que crea js y la referencia osea f se lo pasa como parametro a onSubmit -->
+
+<div class="row">
+  <div class="col-sm-10 col-md-offset-1">
+    <form (ngSubmit)="onSignin(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="email">Mail</label>
+        <input type="email" id="email" name="email" ngModel class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" ngModel class="form-control">
+      </div>
+
+      <button class="btn btn-primary" type="submit">Sign In</button>
+    </form>
+  </div>
+</div>
