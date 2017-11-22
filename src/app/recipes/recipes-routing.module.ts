@@ -10,7 +10,9 @@ import { AuthGuardService } from '../auth/auth-guard.service';
 
 const recipesRoutes: Routes = [
   // usa children en tercer parametro y crea un objeto de js.
-  { path: 'recipes', component: RecipesComponent, children: [
+  /* como se agrego la ruta en app-routing.module.ts para que cargue solo cuando lo pide el usuario
+  esta ruta tiene que apuntar '' para que entienda que va a recipes  */
+  { path: '', component: RecipesComponent, children: [
     // usa esta ruta con RecipeStartComponent solo para pasar un mensaje de texto, de seleccionar receta
     { path: '', component: RecipeStartComponent },
     /* el orden es importante al usar urls dinamicas, si pongo new abajo de :id y despues :id/edit nunca va a entrar a new.

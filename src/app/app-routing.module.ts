@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+import { HomeComponent } from './home/home.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
 // crea una constante que es del tipo Routes
@@ -12,7 +13,13 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 const appRoutes: Routes = [
   /* cuando entra a home lo redirige a /recipes, para solucionar que tire error,
   porque angular no entiende que es solo para home, hay que agregar pathMatch */
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
+  /* en vez de componente usa loadChildren y en vez de un tipo usa un string que apunta al modulo
+  despues de la ruta le pone #RecipesModule que es el nombre de la clase que esta en ese modulo
+  con este trae recipes y todos los componentes, modulos y rutas que use (lazy loading) */
+  { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule' },
+  /* ejemplo de como se redirecciona
+  { path: '', redirectTo: '/recipes', pathMatch: 'full' }, */
   { path: 'shopping-list', component: ShoppingListComponent }
 ];
 

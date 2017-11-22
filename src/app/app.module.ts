@@ -10,15 +10,16 @@ import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
-import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
     /* todos los componentes de recipes estan importados en recipes/recipes.module.ts
     el servicio de recipe, lo deja en providers porque necesita que sea global el alcance de su data
     shopping-list y signin y signup tambien tienen sus modulos */
@@ -28,8 +29,8 @@ import { AuthModule } from './auth/auth.module';
     HttpModule,
     // importa app-routing.module.ts donde se configuran las rutas.
     AppRoutingModule,
-    // importa este modulo que tiene todos los imports de recipes y las rutas
-    RecipesModule,
+    /* RecipesModule lo saca de aca y lo declara en una ruta en app-routing.module.ts para que cargue
+    solamente cuando el usuario lo pida (lazy loading) */
     // comparte DropdownDirective para este modulo y para recipes.module.ts
     SharedModule,
     ShoppingListModule,
