@@ -11,10 +11,20 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/signup">Register</a></li>
-        <li><a routerLink="/signin">Login</a></li>
-        <!-- le pone appDropdown y es la directiva que creo en shared/dropdown.directive.ts donde le cambia el valor de false a true y viceversa cada vez que hace click, si es true HostBinding pone la clase open, si es false la quita -->
-        <li class="dropdown" appDropdown>
+        <!-- no usa div porque puede romper el diseño, por eso lo mete dentro de ng-template
+        si no esta logueado devuelve falso y por ende muestra los links -->
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+            <li><a routerLink="/signup">Register</a></li>
+            <li><a routerLink="/signin">Login</a></li>
+        </ng-template>
+
+        <!-- si esta logueado lo muestra, cuando hace clic ejecuta el metodo onLogout de header.component.ts -->
+        <li><a style="cursor: pointer; " (click)="onLogout()" *ngIf="authService.isAuthenticated()">Logout</a></li>
+
+        <!-- le pone appDropdown y es la directiva que creo en shared/dropdown.directive.ts donde le cambia el valor de false a true y viceversa cada vez que hace click, si es true HostBinding pone la clase open, si es false la quita.
+        si esta logueado muestra estos links
+        en este caso se usa *ngIf en el li, pero por atras estaria creando un ng-template [ngIf] -->
+        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
           <a class="dropdown-toggle" role="button" style="cursor: pointer; ">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer; " (click)="onSaveData()">Save Data</a></li>

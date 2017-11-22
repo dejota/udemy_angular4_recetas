@@ -51,7 +51,7 @@
         <div class="col-xs-12" formArrayName="ingredients">
           <!-- itera todos los controles de los ingredientes y tambien guarda el index de cada ingrediente del array recipeIngredients
           formGroupName i, trae la data de ese index. -->
-          <div class="row" *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index" [formGroupName]="i">
+          <div class="row" *ngFor="let ingredientCtrl of recipeForm.get('ingredients'); let i = index" [formGroupName]="i">
             <div class="col-xs-8">
               <input type="text" formControlName="name" class="form-control">
             </div>
