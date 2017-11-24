@@ -2,10 +2,10 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { HomeComponent } from './core/home/home.component';
 
 // crea una constante que es del tipo Routes
 // importa Routes para poder crear las rutas
@@ -27,7 +27,9 @@ const appRoutes: Routes = [
   imports: [
     CommonModule,
     // para configurar el RouterModule se le pasa appRoutes dentro del metodo forRoot, y asi angular sabe como entender esas rutas.
-    RouterModule.forRoot(appRoutes)
+    /* segundo parametro es la propiedad preloadingStrategy que es para configurar dentro de un objeto de js
+    y le pasa el tipo PreloadAllModules que se importa arriba */
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [
     // para que estas rutas funcionen, hay que exportarlas a la app principal osea app.module.ts

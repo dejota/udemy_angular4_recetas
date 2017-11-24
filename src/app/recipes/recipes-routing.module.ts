@@ -33,7 +33,11 @@ const recipesRoutes: Routes = [
     // para que estas rutas funcionen, hay que exportarlas a la app principal osea app.module.ts
     RouterModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    /* provee AuthGuardService aca, ya que solo lo usa en este modulo con canActivate  */
+    AuthGuardService
+  ]
 })
 
 export class RecipesRoutingModule{}
